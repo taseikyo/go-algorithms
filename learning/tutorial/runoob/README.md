@@ -8,7 +8,7 @@
 
 - https://www.runoob.com/go/go-tutorial.html
 
-```{.python .input .Golang}
+```Golang
 package main
 
 import "fmt"
@@ -31,3 +31,12 @@ func main() {
 1. [Go 语言变量作用域](md/09.go-scope-rules.md)
 1. [Go 语言数组](md/10.go-arrays.md)
 1. [Go 语言指针](md/11.go-pointers.md)
+1. [Go 语言结构体](md/12.go-structures.md)
+1. [Go 语言切片（Slice）](md/13.go-slice.md)
+1. [Go 语言范围（Range）](md/14.go-range.md)
+1. [Go 语言集合（Map）](md/15.go-map.md)
+1. [Go 语言递归函数](md/16.go-recursion.md)
+1. [Go 语言类型转换](md/17.go-type-casting.md)
+1. [Go 语言接口](md/18.go-interfaces.md)
+1. [Go 错误处理](md/19.go-error-handling.md)
+1. [Go 并发](md/20.go-concurrent.md)

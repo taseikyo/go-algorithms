@@ -6,7 +6,7 @@ Classic algorithms and data structures implemented in Go.
 
 ### Learning
 
-learning Golang.
+learning Golang step by step [➡](learning)
 
 ### Data Structures
 
