@@ -18,6 +18,8 @@ learning Golang step by step
 
 ### Algorithms
 
+- [C 语言经典 100 例（Go 实现版本）](algorithm/c-exercise-example-in-go.ipynb)
+
 ## License
 
 Copyright (c) 2020 Lewis Tian. Licensed under the MIT license.
