@@ -327,10 +327,169 @@ func t20() {
     sum := h
     h /= 2
     for i := 1; i < count; i++ {
-        sum += 2*h
+        sum += 2 * h
         h /= 2
     }
     fmt.Printf("第 10 次落地时，共经过 %f 米，第 10 次反弹高 %f 米\n", sum, h)
+}
+
+func t21() {
+    day, x1, x2 := 9, 0, 1
+    for day > 0 {
+        // 第一天的桃子数是第 2 天桃子数加 1 后的 2 倍
+        x1 = (x2 + 1) * 2
+        x2 = x1
+        day--
+    }
+    fmt.Printf("总数为 %d\n", x1)
+}
+
+func t22() {
+    var i, j, k int8
+    for i = 'x'; i <= 'z'; i++ {
+        for j = 'x'; j <= 'z'; j++ {
+            if i != j {
+                for k = 'x'; k <= 'z'; k++ {
+                    if i != k && j != k {
+                        if i != 'x' && k != 'x' && k != 'z' {
+                            fmt.Printf("顺序为：a--%c\tb--%c\tc--%c\n", i, j, k)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+func t23() {
+    count := 3
+    for i := 0; i <= count; i++ {
+        for j := 0; j <= 2-i; j++ {
+            fmt.Printf(" ")
+        }
+        for k := 0; k <= 2*i; k++ {
+            fmt.Printf("*")
+        }
+        fmt.Println()
+    }
+    for i := 0; i < count; i++ {
+        for j := 0; j <= i; j++ {
+            fmt.Printf(" ")
+        }
+        for k := 0; k <= 4-2*i; k++ {
+            fmt.Printf("*")
+        }
+        fmt.Println()
+    }
+}
+
+func t24() {
+    sum, a, b := 0.0, 2.0, 1.0
+    count := 20
+    for i := 0; i < count; i++ {
+        sum += a / b
+        a, b = a+b, a
+    }
+    fmt.Printf("前 20 项的和：%f\n", sum)
+}
+
+func t25() {
+    var sum int64 = 0
+    cur, count := 1, 20
+    for i := 1; i <= count; i++ {
+        cur *= i
+        sum += int64(cur)
+    }
+    fmt.Printf("阶乘累计和：%d\n", sum)
+}
+
+func t26_1(idx int) int {
+    if idx == 1 {
+        return idx
+    }
+    return idx * t26_1(idx-1)
+}
+
+func t26() {
+    fmt.Println(t26_1(5))
+}
+
+func t27_1(n int) {
+    var next int8
+    if n <= 1 {
+        fmt.Scanf("%c", &next)
+        fmt.Print("相反顺序输出结果：")
+        fmt.Printf("%c", next)
+    } else {
+        fmt.Scanf("%c", &next)
+        t27_1(n - 1)
+        fmt.Printf("%c", next)
+    }
+}
+
+func t27() {
+    i := 5
+    fmt.Printf("请输入 5 个字符：")
+    t27_1(i)
+    fmt.Println()
+}
+
+func t28_1(n int) int {
+    var c int
+    if n == 1 {
+        c = 10
+    } else {
+        c = t28_1(n-1) + 2
+    }
+    return c
+}
+
+func t28() {
+    fmt.Printf("%d\n", t28_1(5))
+}
+
+func t29_1(n int) {
+    if n == 0 {
+        return
+    } else {
+        lower := n % 10
+        fmt.Print(lower)
+        t29_1(n / 10)
+    }
+}
+
+func t29() {
+    n := 0
+    fmt.Print("输入一个数：")
+    fmt.Scanf("%d", &n)
+    if n == 0 {
+        fmt.Print(n)
+    } else {
+        t29_1(n)
+
+    }
+    fmt.Println()
+}
+
+func t30() {
+    n := 0
+    var list []int
+    fmt.Print("输入一个数：")
+    fmt.Scanf("%d", &n)
+    if n > 10 {
+        for n > 0 {
+            lower := n % 10
+            n /= 10
+            list = append(list, lower)
+        }
+        for i := 0; i < len(list)/2; i++ {
+            if list[i] != list[len(list)-1-i] {
+                fmt.Println("不是回文数")
+                return
+            }
+        }
+    }
+    fmt.Println("回文数")
 }
 
 func main() {
@@ -354,13 +513,23 @@ func main() {
         t18,
         t19,
         t20,
+        t21,
+        t22,
+        t23,
+        t24,
+        t25,
+        t26,
+        t27,
+        t28,
+        t29,
+        t30,
     }
     var idx int
     var ch int8
 
     for {
         fmt.Printf("Input function idx (0 ~ %d, 0 means execute all functions): ", len(func_list))
-        fmt.Scan(&idx)
+        fmt.Scanf("%d", &idx)
 
         if idx > len(func_list) {
             idx = len(func_list)
