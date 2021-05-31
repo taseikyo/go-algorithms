@@ -9,6 +9,7 @@ package main
 import (
     "fmt"
     "math"
+    "sort"
 )
 
 func t1() {
@@ -195,8 +196,8 @@ func t11() {
     }
 }
 
-func t12() {
-    lower, upper := 101, 201
+func t12_1(lower, upper int) {
+    // lower, upper := 101, 201
     for i := lower; i < upper; i++ {
         flag := false
         for j := 2; j <= int(math.Sqrt(float64(i))); j++ {
@@ -210,6 +211,10 @@ func t12() {
         }
 
     }
+}
+
+func t12() {
+    t12_1(101, 201)
 }
 
 func t13() {
@@ -492,6 +497,174 @@ func t30() {
     fmt.Println("回文数")
 }
 
+func t31() {
+    var ch int8
+    fmt.Print("请输入第一个字母：")
+    fmt.Scanf("%c ", &ch)
+    switch ch {
+    case 'm':
+        fmt.Println("monday")
+    case 'w':
+        fmt.Println("wednesday")
+    case 'f':
+        fmt.Println("friday")
+    case 't':
+        fmt.Print("请输入下一个字母：")
+        fmt.Scanf("%c ", &ch)
+        if ch == 'u' {
+            fmt.Println("tuesday")
+        } else if ch == 'h' {
+            fmt.Println("thursday")
+        }
+    case 's':
+        fmt.Print("请输入下一个字母：")
+        fmt.Scanf("%c ", &ch)
+        if ch == 'a' {
+            fmt.Println("saturday")
+        } else if ch == 'u' {
+            fmt.Println("sunday")
+        }
+    default:
+        fmt.Println("error")
+    }
+}
+
+func t32() {
+    var str string
+    var ch byte
+    var ret []byte
+    fmt.Print("输入字符串：")
+    fmt.Scanf("%s ", &str)
+    fmt.Print("输入删除的字符：")
+    fmt.Scanf("%c ", &ch)
+    for i := 0; i < len(str); i++ {
+        if str[i] != ch {
+            ret = append(ret, str[i])
+        }
+    }
+    fmt.Println(string(ret))
+}
+
+func t33() {
+    num := 0
+    fmt.Print("输入一个数：")
+    fmt.Scanf("%d ", &num)
+    fmt.Printf("如果%d是质数则会再次输出，否则不会输出。\n", num)
+    t12_1(num, num+1)
+}
+
+func t34_1(parent string, level int) {
+    for level > 0 {
+        fmt.Print(" ")
+        level--
+    }
+    fmt.Printf("%s call me!\n", parent)
+}
+
+func t34() {
+    t34_1("t34", 1)
+}
+
+func t35() {
+    var str string
+    fmt.Print("输入字符串：")
+    fmt.Scanf("%s ", &str)
+    ret := []byte(str)
+    n := len(ret)
+    for i := 0; i < n/2; i++ {
+        ret[i], ret[n-i-1] = ret[n-i-1], ret[i]
+    }
+    fmt.Println(string(ret))
+}
+
+func t36() {
+    t12_1(2, 101)
+}
+
+type IntSlice []int
+
+func (s IntSlice) Len() int           { return len(s) }
+func (s IntSlice) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
+func (s IntSlice) Less(i, j int) bool { return s[i] < s[j] }
+
+func t37() {
+    a := []int{4, 3, 2, 1, 5, 9, 8, 7, 6}
+    sort.Sort(IntSlice(a))
+    fmt.Println("After sorted: ", a)
+}
+
+func t38() {
+    var m [3][3]int
+    fmt.Println("请输入矩阵(3*3)：")
+    for i := 0; i < 3; i++ {
+        for j := 0; j < 3; j++ {
+            fmt.Scanf("%d", &m[i][j])
+        }
+    }
+    sum := 0
+    for i := 0; i < 3; i++ {
+        sum += m[i][i]
+    }
+    fmt.Printf("对角线之和为：%d\n", sum)
+}
+
+func t39() {
+    var n, tmp int
+    var a []int
+    fmt.Print("输入数字的个数：")
+    fmt.Scanf("%d ", &n)
+    fmt.Printf("输入一些数：")
+    for i := 0; i < n; i++ {
+        fmt.Scanf("%d", &tmp)
+        a = append(a, tmp)
+    }
+    sort.Sort(IntSlice(a))
+    fmt.Println("After sorted: ", a)
+    fmt.Print("输入插入的数：")
+    fmt.Scanf("%d ", &n)
+    mid := -1
+    if n >= a[len(a)-1] {
+        a = append(a, n)
+    } else if n <= a[0] {
+        a = append([]int{n}, a...)
+    } else {
+        i, j := 0, len(a)
+        for i <= j {
+            mid = i + (j-i)/2
+            fmt.Println(i, mid, j)
+            if a[mid] <= n {
+                i = mid + 1
+            } else {
+                j = mid - 1
+            }
+        }
+        if a[mid] == n {
+            mid++
+        }
+        a = append(a, n)
+        for i := len(a) - 1; i > mid; i-- {
+            a[i] = a[i-1]
+        }
+        a[mid] = n
+    }
+    fmt.Println(a)
+}
+
+func t40() {
+    var n, tmp int
+    var a []int
+    fmt.Print("输入数字的个数：")
+    fmt.Scanf("%d ", &n)
+    fmt.Printf("输入一些数：")
+    for i := 0; i < n; i++ {
+        fmt.Scanf("%d", &tmp)
+        a = append(a, tmp)
+    }
+    for i := n - 1; i >= 0; i-- {
+        fmt.Print(a[i])
+    }
+}
+
 func main() {
     func_list := []func(){t1,
         t2,
@@ -523,6 +696,16 @@ func main() {
         t28,
         t29,
         t30,
+        t31,
+        t32,
+        t33,
+        t34,
+        t35,
+        t36,
+        t37,
+        t38,
+        t39,
+        t40,
     }
     var idx int
     var ch int8

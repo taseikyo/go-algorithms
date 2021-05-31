@@ -18,7 +18,7 @@ learning Golang step by step
 
 ### Algorithms
 
-- [C 语言经典 100 例（Go 实现版本）](algorithm/c-exercise-example-in-go.ipynb)
+- [C 语言经典 100 例（Go 实现版本）](algorithm/c-exercise-example-in-go.ipynb) | [nbviewer](https://nbviewer.jupyter.org/github/taseikyo/go-algorithms/blob/master/algorithm/c-exercise-example-in-go.ipynb)
 
 ## License
 
