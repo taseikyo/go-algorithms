@@ -665,6 +665,73 @@ func t40() {
     }
 }
 
+func t41() {}
+func t42() {}
+func t43() {}
+func t44() {}
+func t45() {}
+func t46() {}
+func t47() {}
+func t48() {}
+func t49() {}
+func t50() {}
+
+func t51() {
+    a, b := 4, 1
+    fmt.Println("a & b: ", a&b)
+}
+
+func t52() {
+    a, b := 4, 1
+    fmt.Println("a & b: ", a|b)
+}
+
+func t53() {
+    a, b := 4, 1
+    fmt.Println("a & b: ", a^b)
+}
+
+func t54() {
+    var a int
+    fmt.Print("输入一个数：")
+    fmt.Scanf("%d ", &a)
+    a >>= 4
+    a &= ^(^0 << 4)
+    fmt.Println(a)
+}
+
+func t55() {
+    a := 8
+    fmt.Println(a, ^a)
+}
+
+func t56() {}
+func t57() {}
+func t58() {}
+func t59() {}
+func t60() {}
+
+func t61() {
+    count := 10
+    var arr [][]int
+    for i := 0; i < count; i++ {
+        tmp := []int{1}
+        for j := 1; j <= i; j++ {
+            if j == i {
+                tmp = append(tmp, 1)
+            } else {
+                tmp = append(tmp, arr[i-1][j]+arr[i-1][j-1])
+
+            }
+        }
+        arr = append(arr, tmp)
+    }
+    for _, tmp := range arr {
+        fmt.Println(tmp)
+
+    }
+}
+
 func main() {
     func_list := []func(){t1,
         t2,
@@ -706,6 +773,27 @@ func main() {
         t38,
         t39,
         t40,
+        t41,
+        t42,
+        t43,
+        t44,
+        t45,
+        t46,
+        t47,
+        t48,
+        t49,
+        t50,
+        t51,
+        t52,
+        t53,
+        t54,
+        t55,
+        t56,
+        t57,
+        t58,
+        t59,
+        t60,
+        t61,
     }
     var idx int
     var ch int8
