@@ -732,6 +732,123 @@ func t61() {
     }
 }
 
+func t62() {}
+func t63() {}
+func t64() {}
+func t65() {}
+
+func t66() {
+    var a, b, c int
+    fmt.Print("输入 a，b，c：")
+    fmt.Scanf("%d %d %d ", &a, &b, &c)
+    if a > b {
+        a, b = b, a
+    }
+    if a > c {
+        a, c = c, a
+    }
+    if b > c {
+        b, c = c, b
+    }
+    fmt.Println(a, b, c)
+}
+
+func t67() {
+    var n, tmp int
+    max := math.MinInt32
+    maxIdx := -1
+    min := math.MaxInt32
+    minIdx := -1
+    var a []int
+    fmt.Print("输入数字的个数：")
+    fmt.Scanf("%d ", &n)
+    fmt.Printf("输入一些数：")
+    for i := 0; i < n; i++ {
+        fmt.Scanf("%d", &tmp)
+        if tmp > max {
+            max = tmp
+            maxIdx = i
+        }
+        if tmp < min {
+            min = tmp
+            minIdx = i
+        }
+        a = append(a, tmp)
+    }
+    fmt.Println(maxIdx, minIdx)
+    a[0], a[maxIdx] = a[maxIdx], a[0]
+    a[n-1], a[minIdx] = a[minIdx], a[n-1]
+    fmt.Println(a)
+}
+
+func t68() {
+    var n, m, tmp int
+    fmt.Print("输入 n 和 m：")
+    fmt.Scanf("%d %d ", &n, &m)
+    if n <= m {
+        panic("输入条件错误（n > m）")
+    }
+    a := make([]int, n)
+    b := make([]int, m)
+    c := make([]int, n-m)
+    fmt.Printf("输入一些数：")
+    for i := 0; i < n; i++ {
+        fmt.Scanf("%d", &tmp)
+        a[i] = tmp
+    }
+    for i := 0; i < n-m; i++ {
+        c[i] = a[i]
+    }
+    for i := 0; i < m; i++ {
+        b[i] = a[n-m+i]
+    }
+    for i := 0; i < m; i++ {
+        a[i] = b[i]
+    }
+    for i := m; i < n; i++ {
+        a[i] = c[i-m]
+    }
+    fmt.Println(a)
+}
+
+func t69() {
+    var n int
+    fmt.Print("输入 n：")
+    fmt.Scanf("%d ", &n)
+    a := make([]int, n)
+    for i := 0; i < n; i++ {
+        a[i] = 1
+    }
+    // 退出人数、循环下标、小循环计数
+    m, i, k := 0, 0, 0
+    for m < n-1 {
+        if a[i] != 0 {
+            k++
+        }
+        if k == 3 {
+            k, a[i] = 0, 0
+            m++
+        }
+        i++
+        if i == n {
+            i = 0
+        }
+    }
+    for i := 0; i < n; i++ {
+        if a[i] != 0 {
+            fmt.Println(i + 1)
+            break
+        }
+    }
+}
+
+func t70() {
+    var str string
+    fmt.Print("输入一个字符串：")
+    fmt.Scanf("%s ", &str)
+    fmt.Println(str, len(str))
+}
+
 func main() {
     func_list := []func(){t1,
         t2,
@@ -794,6 +911,15 @@ func main() {
         t59,
         t60,
         t61,
+        t62,
+        t63,
+        t64,
+        t65,
+        t66,
+        t67,
+        t68,
+        t69,
+        t70,
     }
     var idx int
     var ch int8
